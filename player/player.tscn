@@ -8,16 +8,18 @@
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("character_body")]
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("character_body", "player_camera")]
 script = ExtResource("1_35r4v")
 speed = 4.0
 character_body = NodePath("..")
+player_camera = NodePath("../Camera3D")
 
 [node name="CameraMovement" type="Node" parent="." node_paths=PackedStringArray("character_body", "camera")]
 script = ExtResource("2_ow3ly")
 character_body = NodePath("..")
 camera = NodePath("../Camera3D")
-mouse_sensitivity = 0.5
+mouse_sensitivity = 0.35
+invert_mouse = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vtvms")
