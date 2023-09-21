@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3no7v1aqls7b"]
+[gd_scene load_steps=10 format=3 uid="uid://d3no7v1aqls7b"]
 
 [ext_resource type="PackedScene" uid="uid://batjuubwx1tj" path="res://player/player.tscn" id="1_3jd6i"]
 [ext_resource type="Material" uid="uid://b3ihudng1wifd" path="res://materials/cool_wall.tres" id="2_efl0y"]
+[ext_resource type="Material" uid="uid://bs32afiiciw82" path="res://meatball/meatball_mat.tres" id="3_pgqvo"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_73fn0"]
 
@@ -12,7 +13,16 @@
 [sub_resource type="BoxMesh" id="BoxMesh_5t1na"]
 material = ExtResource("2_efl0y")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_v1xko"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_twdsu"]
+material = ExtResource("3_pgqvo")
+
 [node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, -0.5, 0.5, 0, 10, 0)
+shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
@@ -25,9 +35,6 @@ mesh = SubResource("PlaneMesh_2lfep")
 
 [node name="Player" parent="." instance=ExtResource("1_3jd6i")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 0)
 
 [node name="Cube" type="StaticBody3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7, 2, -7)
@@ -46,3 +53,13 @@ shape = SubResource("BoxShape3D_gw0b7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube2"]
 mesh = SubResource("BoxMesh_5t1na")
+
+[node name="Meatball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.76493, -6.50355)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meatball"]
+shape = SubResource("SphereShape3D_v1xko")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meatball"]
+material_override = ExtResource("3_pgqvo")
+mesh = SubResource("SphereMesh_twdsu")
