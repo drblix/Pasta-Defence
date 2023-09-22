@@ -32,4 +32,6 @@ func _physics_process(delta: float) -> void:
 	# applying constant gravity
 	character_body.velocity.y -= delta * gravity
 	
+	character_body.orthonormalize()
+	
 	character_body.move_and_slide()

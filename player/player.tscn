@@ -23,8 +23,9 @@ camera = NodePath("../Camera3D")
 mouse_sensitivity = 0.25
 invert_mouse = true
 
-[node name="PlayerShooting" type="Node" parent="."]
+[node name="PlayerShooting" type="Node" parent="." node_paths=PackedStringArray("player_camera")]
 script = ExtResource("3_7834h")
+player_camera = NodePath("../Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vtvms")

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://batjuubwx1tj" path="res://player/player.tscn" id="1_3jd6i"]
 [ext_resource type="Material" uid="uid://b3ihudng1wifd" path="res://materials/cool_wall.tres" id="2_efl0y"]
-[ext_resource type="Material" uid="uid://bs32afiiciw82" path="res://meatball/meatball_mat.tres" id="3_pgqvo"]
+[ext_resource type="PackedScene" uid="uid://bcn71veqcwjie" path="res://meatball/meatball.tscn" id="3_si5oa"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_73fn0"]
 
@@ -13,10 +13,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_5t1na"]
 material = ExtResource("2_efl0y")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_v1xko"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_26pcy"]
+height = 0.323304
+radius = 0.399603
 
-[sub_resource type="SphereMesh" id="SphereMesh_twdsu"]
-material = ExtResource("3_pgqvo")
+[sub_resource type="CylinderMesh" id="CylinderMesh_6qiss"]
 
 [node name="World" type="Node3D"]
 
@@ -34,7 +35,7 @@ shape = SubResource("WorldBoundaryShape3D_73fn0")
 mesh = SubResource("PlaneMesh_2lfep")
 
 [node name="Player" parent="." instance=ExtResource("1_3jd6i")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Cube" type="StaticBody3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7, 2, -7)
@@ -54,12 +55,14 @@ shape = SubResource("BoxShape3D_gw0b7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube2"]
 mesh = SubResource("BoxMesh_5t1na")
 
-[node name="Meatball" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.76493, -6.50355)
+[node name="Enemy" type="StaticBody3D" parent="." groups=["enemy"]]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -5, 0.6177, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Meatball"]
-shape = SubResource("SphereShape3D_v1xko")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("CylinderShape3D_26pcy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Meatball"]
-material_override = ExtResource("3_pgqvo")
-mesh = SubResource("SphereMesh_twdsu")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
+transform = Transform3D(0.8, 0, 0, 0, 0.16, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6qiss")
+
+[node name="Meatball" parent="." instance=ExtResource("3_si5oa")]
