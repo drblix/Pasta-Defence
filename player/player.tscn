@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://batjuubwx1tj"]
+[gd_scene load_steps=6 format=3 uid="uid://batjuubwx1tj"]
 
 [ext_resource type="Script" path="res://player/PlayerMovement.gd" id="1_35r4v"]
 [ext_resource type="Script" path="res://player/CameraMovement.gd" id="2_ow3ly"]
 [ext_resource type="Script" path="res://player/PlayerShooting.gd" id="3_7834h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtvms"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2vd10"]
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -23,12 +25,20 @@ camera = NodePath("../Camera3D")
 mouse_sensitivity = 0.25
 invert_mouse = true
 
-[node name="PlayerShooting" type="Node" parent="." node_paths=PackedStringArray("player_camera")]
+[node name="PlayerShooting" type="Node" parent="." node_paths=PackedStringArray("meatball_spawn", "player_camera")]
 script = ExtResource("3_7834h")
+meatball_spawn = NodePath("../Camera3D/MeatballSpawn")
 player_camera = NodePath("../Camera3D")
+throw_force = 10.045
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vtvms")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+
+[node name="MeatballSpawn" type="Area3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/MeatballSpawn"]
+shape = SubResource("SphereShape3D_2vd10")

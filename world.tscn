@@ -35,7 +35,6 @@ shape = SubResource("WorldBoundaryShape3D_73fn0")
 mesh = SubResource("PlaneMesh_2lfep")
 
 [node name="Player" parent="." instance=ExtResource("1_3jd6i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Cube" type="StaticBody3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -7, 2, -7)
