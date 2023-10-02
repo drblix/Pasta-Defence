@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3no7v1aqls7b"]
+[gd_scene load_steps=9 format=3 uid="uid://d3no7v1aqls7b"]
 
 [ext_resource type="PackedScene" uid="uid://batjuubwx1tj" path="res://player/player.tscn" id="1_3jd6i"]
 [ext_resource type="Material" uid="uid://b3ihudng1wifd" path="res://materials/cool_wall.tres" id="2_efl0y"]
-[ext_resource type="PackedScene" uid="uid://bcn71veqcwjie" path="res://meatball/meatball.tscn" id="3_si5oa"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_73fn0"]
 
@@ -63,5 +62,3 @@ shape = SubResource("CylinderShape3D_26pcy")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy"]
 transform = Transform3D(0.8, 0, 0, 0, 0.16, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = SubResource("CylinderMesh_6qiss")
-
-[node name="Meatball" parent="." instance=ExtResource("3_si5oa")]

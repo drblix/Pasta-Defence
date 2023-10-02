@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://batjuubwx1tj"]
 
-[ext_resource type="Script" path="res://player/PlayerMovement.gd" id="1_35r4v"]
-[ext_resource type="Script" path="res://player/CameraMovement.gd" id="2_ow3ly"]
-[ext_resource type="Script" path="res://player/PlayerShooting.gd" id="3_7834h"]
+[ext_resource type="Script" path="res://player/PlayerMovement.cs" id="1_kg1r4"]
+[ext_resource type="Script" path="res://player/CameraMovement.cs" id="2_hinb3"]
+[ext_resource type="Script" path="res://player/PlayerShooting.cs" id="3_31qsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtvms"]
 
@@ -11,25 +11,23 @@
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("character_body", "player_camera")]
-script = ExtResource("1_35r4v")
-move_speed = 5.0
-jump_power = 6.75
-character_body = NodePath("..")
-player_camera = NodePath("../Camera3D")
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "playerCamera")]
+script = ExtResource("1_kg1r4")
+characterBody = NodePath("..")
+playerCamera = NodePath("../Camera3D")
 
-[node name="CameraMovement" type="Node" parent="." node_paths=PackedStringArray("character_body", "camera")]
-script = ExtResource("2_ow3ly")
-character_body = NodePath("..")
-camera = NodePath("../Camera3D")
-mouse_sensitivity = 0.25
-invert_mouse = true
+[node name="CameraMovement" type="Node" parent="." node_paths=PackedStringArray("characterBody", "playerCamera")]
+script = ExtResource("2_hinb3")
+characterBody = NodePath("..")
+playerCamera = NodePath("../Camera3D")
+maxViewAngle = 1.39626
+invertMouse = true
 
-[node name="PlayerShooting" type="Node" parent="." node_paths=PackedStringArray("meatball_spawn", "player_camera")]
-script = ExtResource("3_7834h")
-meatball_spawn = NodePath("../Camera3D/MeatballSpawn")
-player_camera = NodePath("../Camera3D")
-throw_force = 10.045
+[node name="PlayerShooting" type="Node" parent="." node_paths=PackedStringArray("meatballSpawn", "playerCamera")]
+script = ExtResource("3_31qsm")
+meatballSpawn = NodePath("../Camera3D/MeatballSpawn")
+playerCamera = NodePath("../Camera3D")
+throwForce = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vtvms")
