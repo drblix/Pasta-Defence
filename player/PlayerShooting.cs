@@ -17,8 +17,8 @@ public partial class PlayerShooting : Node
     public override void _Ready()
     {
         meatballObject = ResourceLoader.Load("res://meatball/meatball.tscn") as PackedScene;
-        
-		worldNode = GetParent().GetParent().GetParent();
+
+        worldNode = GetTree().CurrentScene;
     }
 
     public override void _Process(double delta)

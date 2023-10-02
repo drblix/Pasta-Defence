@@ -43,6 +43,5 @@ public partial class CameraMovement : Node
 		}
 		else if (@event.GetType() == typeof(InputEventKey) && ((InputEventKey)@event).Keycode == Key.Escape)
 			GetTree().Quit();
-
-    }
+	}
 }
